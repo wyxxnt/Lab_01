@@ -1,52 +1,38 @@
-# функція для збільшення числа на 1
 def inc(n):
-    result = n + 1
-    return result
+    n = n + 1
+    return n
 
 def inc_object(num):
-    num['n'] = num['n'] + 1
+    num['n'] += 1
 
-a = 10
+a = 5
 b = inc(a)
-print("a =", a, "b =", b)
+print("a:", a)
+print("b:", b)
 
 obj = {'n': 5}
 inc_object(obj)
-print("obj =", obj)
+print("obj:", obj)
 
-print()
+my_list = [True, 'test', 7, 'hello', False, 23, 'world', True, 8, False, 'python', 15, True, 'code', 42]
 
-data = [True, 'hello', 5, 12, -200, False, False, 'word', 3.14, 'python', 42, 'test', True, 0, 'example', -15, 'code', False, 100, 'string']
+count_dict = {'int': 0, 'str': 0, 'bool': 0}
 
-types_count = {}
-types_count['int'] = 0
-types_count['str'] = 0
-types_count['bool'] = 0
-types_count['float'] = 0
+for x in my_list:
+    if type(x) == int:
+        count_dict['int'] += 1
+    elif type(x) == str:
+        count_dict['str'] += 1
+    elif type(x) == bool:
+        count_dict['bool'] += 1
 
-for i in range(len(data)):
-    element = data[i]
-    element_type = type(element).__name__
-    if element_type == 'int':
-        types_count['int'] = types_count['int'] + 1
-    if element_type == 'str':
-        types_count['str'] = types_count['str'] + 1
-    if element_type == 'bool':
-        types_count['bool'] = types_count['bool'] + 1
-    if element_type == 'float':
-        types_count['float'] = types_count['float'] + 1
+print(count_dict)
 
-print(types_count)
+new_dict = {}
+for item in my_list:
+    item_type = str(type(item)).split("'")[1]
+    if item_type not in new_dict:
+        new_dict[item_type] = 0
+    new_dict[item_type] += 1
 
-print()
-
-empty_dict = {}
-
-for i in data:
-    t = type(i).__name__
-    if t in empty_dict:
-        empty_dict[t] = empty_dict[t] + 1
-    else:
-        empty_dict[t] = 1
-
-print(empty_dict)
+print(new_dict)
